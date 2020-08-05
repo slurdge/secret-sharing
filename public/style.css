@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'Material-Icons';
+  src:  url('fonts/Material-Icons.eot?defjba');
+  src:  url('fonts/Material-Icons.eot?defjba#iefix') format('embedded-opentype'),
+    url('fonts/Material-Icons.ttf?defjba') format('truetype'),
+    url('fonts/Material-Icons.woff?defjba') format('woff'),
+    url('fonts/Material-Icons.svg?defjba#Material-Icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Material-Icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.materialdesign:before {
+  content: "\e906";
+  color: #757575;
+}
+.node-dot-js:before {
+  content: "\e904";
+  color: #393;
+}
+.svelte:before {
+  content: "\e905";
+  color: #ff3e00;
+}
+.close:before {
+  content: "\e903";
+}
+.content_copy:before {
+  content: "\e900";
+}
+.visibility:before {
+  content: "\e901";
+}
+.visibility_off:before {
+  content: "\e902";
+}

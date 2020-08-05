@@ -3595,6 +3595,11 @@ svelte-awesome@^2.3.0:
   dependencies:
     svelte "^3.15.0"
 
+svelte-copy-to-clipboard@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/svelte-copy-to-clipboard/-/svelte-copy-to-clipboard-0.2.5.tgz#4fd5c89a6415b7f6a4e153a9896b50b2dee12611"
+  integrity sha512-EAULxib4pRa59nyz25dDKITgSAVkrNVojRZVCSO8MIFd5GJljghJaCTIe/7R+O3GxKYIwJ3XHDNoY1hfjJeyEg==
+
 svelte-material-ui@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/svelte-material-ui/-/svelte-material-ui-1.0.0.tgz#acce76549cc0d2a789bbd31c2a552f9202dc6adb"
