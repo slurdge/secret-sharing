@@ -15,8 +15,10 @@
     inputs = [...inputs, { password: "", visible: false }];
   };
 
-  for (let i = 0; i < defaultNumberOfShare; ++i) {
-    addShare();
+  if (inputs.length == 0) {
+    for (let i = 0; i < defaultNumberOfShare; ++i) {
+      addShare();
+    }
   }
 
   let combined = "";
