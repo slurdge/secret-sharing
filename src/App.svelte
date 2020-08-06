@@ -12,11 +12,17 @@
   import Snackbar, { Actions, Label as SnackbarLabel } from "@smui/snackbar";
   import IconButton from "@smui/icon-button";
   import Paper, { Title, Subtitle, Content } from "@smui/paper";
+  import Fab from '@smui/fab';
 
   let inputs = [];
   const defaultNumberOfShare = 5;
+
+  const addShare = () => {
+    inputs = [...inputs, {password: "", visible: false}];
+  }
+
   for (let i = 0; i < defaultNumberOfShare; ++i) {
-    inputs[i] = { ...{ password: "", visible: false } };
+    addShare();
   }
 
   const tabs = [
@@ -62,6 +68,8 @@
     sharing = sharing;
   };
 
+
+
   const handleSuccessfullyCopied = (e) => {
     alertText = "Succesfully copied to the clipboard";
     alertBar.open();
@@ -86,7 +94,7 @@
     </Tab>
   </TabBar>
   {#if activeTab.key == 1}
-    <div class="container">
+    <div class="container" style="display: grid">
       {#each inputs as input, index}
         <Textfield
           variant="outlined"
@@ -94,13 +102,15 @@
           withTrailingIcon
           bind:value={input.password}
           label={'Share ' + (index + 1)}
-          style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+          style="width: 100%; margin-top: 10px; margin-bottom: 10px;"
+          >
           <Icon
             class={input.visible ? 'visibility' : 'visibility_off'}
             role="button"
             on:click={toggleVisibility(input)} />
         </Textfield>
       {/each}
+      <Fab mini color="primary" style="margin-top: -15px; justify-self: center;" on:click={addShare}>+</Fab>
       <Group
         variant="outlined"
         style="display: flex; margin-top: 10px; margin-bottom: 10px;">
@@ -113,7 +123,7 @@
         </Button>
       </Group>
       <Textfield
-        style="margin-top: 20px;"
+        style="margin-top: 10px; margin-bottom: 10px;"
         readonly
         fullwidth
         textarea
@@ -226,7 +236,7 @@
           <Button
             variant="unelevated"
             color="secondary"
-            style="flex-grow: 3;"
+            style="flex-grow: 2;"
             href="https://svelte.dev/">
             <Label>
               <Icon class="svelte" style="font-size: 100%"/>
@@ -240,7 +250,7 @@
             href="https://github.com/hperrin/svelte-material-ui">
             <Label>
               <Icon class="materialdesign" style="font-size: 100%"/>
-              Material-UI for Svelte
+              Material
             </Label>
           </Button>
           <Button
