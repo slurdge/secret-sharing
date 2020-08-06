@@ -12,13 +12,13 @@
   import Button, { Group, Label } from "@smui/button";
 
   export let defaultNumberOfShare;
-  let shares = [];
 
-  let sharing = {
+  export let sharing = {
     secret: "",
     visible: false,
     numShares: defaultNumberOfShare,
     numRecover: Math.floor(defaultNumberOfShare / 2),
+    shares: []
   };
 
   $: sharing.numRecover =
@@ -28,7 +28,7 @@
 
   const share = function () {
     let hex = secrets.str2hex(sharing.secret);
-    shares = secrets.share(hex, sharing.numShares, sharing.numRecover);
+    sharing.shares = secrets.share(hex, sharing.numShares, sharing.numRecover);
   };
 
   const handleSuccessfullyCopied = () => {
@@ -94,7 +94,7 @@
     <Label>Share</Label>
   </Button>
 </Group>
-{#each shares as share, index}
+{#each sharing.shares as share, index}
   <Textfield
     variant="outlined"
     type="textarea"
