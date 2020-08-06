@@ -14,6 +14,7 @@
   import Fab from '@smui/fab';
 
   import About from "./About.svelte"
+  import Share from "./Share.svelte"
 
   let inputs = [];
   const defaultNumberOfShare = 5;
@@ -69,17 +70,11 @@
     sharing = sharing;
   };
 
-
-
-  const handleSuccessfullyCopied = (e) => {
-    alertText = "Succesfully copied to the clipboard";
+  const alert = (event) => {
+    alertText = event.detail;
     alertBar.open();
-  };
+  }
 
-  const handleFailedCopy = () => {
-    alertText = "Cannot copy to the clipboard";
-    alertBar.open();
-  };
 </script>
 
 <style>
@@ -89,7 +84,6 @@
 <main style="margin-left: 5%; margin-right: 5%">
   <h1 class="display-4" style="text-align:center">Secret Sharing</h1>
   <TabBar {tabs} let:tab bind:active={activeTab} style="margin-bottom: 7px;">
-    <!-- Notice that the `tab` property is required! -->
     <Tab {tab}>
       <Label>{tab.label}</Label>
     </Tab>
@@ -132,77 +126,7 @@
         label="Recovered" />
     </div>
   {:else if activeTab.key == 0}
-    <Textfield
-      variant="outlined"
-      textarea
-      withTrailingIcon
-      bind:value={sharing.secret}
-      label="Secret"
-      style="width: 100%; margin-top: 10px; margin-bottom: 10px; ">
-      <Icon
-        class="material-icons"
-        role="button"
-        on:click={toggleVisibility(sharing)} />
-    </Textfield>
-    <Label>Total number of shares: {sharing.numShares}</Label>
-    <FormField align="end" style="display: flex;">
-      <Slider
-        bind:value={sharing.numShares}
-        min={2}
-        max={32}
-        step={1}
-        discrete
-        displayMarkers />
-      <span
-        slot="label"
-        style="padding-right: 12px; width: max-content; display: block;">
-        {sharing.numShares}
-      </span>
-
-    </FormField>
-    <Label>Number of shares needed for recovery</Label>
-    <FormField align="end" style="display: flex;">
-      <Slider
-        bind:value={sharing.numRecover}
-        min={2}
-        max={sharing.numShares}
-        step={1}
-        discrete
-        displayMarkers />
-      <span
-        slot="label"
-        style="padding-right: 12px; width: max-content; display: block;">
-        {sharing.numRecover}
-      </span>
-    </FormField>
-    <Group
-      variant="outlined"
-      style="display: flex; margin-top: 10px; margin-bottom: 10px;">
-      <Button
-        on:click={share}
-        variant="unelevated"
-        color="primary"
-        style="flex-grow: 3;">
-        <Label>Share</Label>
-      </Button>
-    </Group>
-    {#each shares as share, index}
-      <Textfield
-        variant="outlined"
-        type="textarea"
-        withTrailingIcon
-        value={share}
-        label={'Share ' + (index + 1)}
-        style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-        <CopyToClipboard
-          text={share}
-          on:copy={handleSuccessfullyCopied}
-          on:fail={handleFailedCopy}
-          let:copy>
-          <Icon class="content_copy" role="button" on:click={copy} />
-        </CopyToClipboard>
-      </Textfield>
-    {/each}
+    <Share defaultNumberOfShare={defaultNumberOfShare} on:alert={alert}/>
   {:else if activeTab.key == 2}
     <About share={defaultNumberOfShare}/>
   {/if}
